@@ -75,11 +75,12 @@ class Users(UserMixin, db.Model):
     notes = db.relationship("Notes", cascade='all, delete', backref='users', lazy=True)
 
     # constructor of a User object, initializes of instance variables within object
-    def __init__(self, name, email, password, phone):
+    def __init__(self, name, email, password, phone, dob):
         self.name = name
         self.email = email
         self.set_password(password)
         self.phone = phone
+        self.dob = dob 
 
     # returns a string representation of object, similar to java toString()
     def __repr__(self):
@@ -106,6 +107,7 @@ class Users(UserMixin, db.Model):
             "email": self.email,
             "password": self.password,
             "phone": self.phone,
+            "dob": self.dob,
             "notes": self.notes,
             "query": "by_alc"  # This is for fun, a little watermark
         }
